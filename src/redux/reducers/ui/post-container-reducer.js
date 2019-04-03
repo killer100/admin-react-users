@@ -1,6 +1,6 @@
 import {
 	Types as uiTypes
-} from '../../actions/ui-actions';
+} from '../../actions/ui/posts-page.actions';
 
 import {
 	createReducer
@@ -22,8 +22,8 @@ const closeModal = (state = INITIAL_STATE, action) => ({
 
 
 export const HANDLERS = {
-	[uiTypes.POST_PAGE_OPEN_MODAL]: openModal,
-	[uiTypes.POST_PAGE_CLOSE_MODAL]: closeModal
+	[uiTypes.OPEN_MODAL_POST]: openModal,
+	[uiTypes.CLOSE_MODAL_POST]: closeModal
 }
 
 export default createReducer(INITIAL_STATE, HANDLERS);

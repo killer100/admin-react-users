@@ -1,10 +1,8 @@
 import {
-	ACTIONS_TYPES
-} from "../../constants";
-
-import {
 	createReducer
 } from 'reduxsauce'
+
+import { Types as postTypes } from '../../actions/data/posts.actions';
 
 const INITIAL_STATE = {
 	loading: false,
@@ -19,21 +17,21 @@ const fetchPostsBegin = (state = INITIAL_STATE) => ({
 });
 
 const fetchPostsSuccess = (state = INITIAL_STATE, action) => ({
-	items: action.payload.posts,
+	items: action.posts,
 	error: false,
 	loading: false,
 });
 
 const fetchPostsFailure = (state = INITIAL_STATE, action) => ({
 	items: [],
-	error: action.payload.error,
+	error: action.error,
 	loading: false,
 });
 
 const HANDLERS = {
-	[ACTIONS_TYPES.GET_POSTS_BEGIN]: fetchPostsBegin,
-	[ACTIONS_TYPES.GET_POSTS_SUCCESS]: fetchPostsSuccess,
-	[ACTIONS_TYPES.GET_POSTS_FAILURE]: fetchPostsFailure
+	[postTypes.FETCH_POSTS_BEGIN]: fetchPostsBegin,
+	[postTypes.FETCH_POSTS_SUCCESS]: fetchPostsSuccess,
+	[postTypes.FETCH_POSTS_FAILURE]: fetchPostsFailure
 };
 
 export default createReducer(INITIAL_STATE, HANDLERS);

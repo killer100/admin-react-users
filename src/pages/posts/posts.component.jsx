@@ -1,7 +1,4 @@
-import React, {
-	useEffect
-} from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -36,9 +33,8 @@ class PostsComponent extends React.Component {
 		this.props.getPost(id);
 	};
 
-	handleCloseModal = () => {
-		this.props.clearPostData();
-		this.props.closeModalPost();
+	handleExitedModal = () => {
+
 	}
 
 	componentDidMount() {
@@ -46,7 +42,7 @@ class PostsComponent extends React.Component {
 	}
 
 	render() {
-		const { classes, data, ui } = this.props;
+		const { classes, data, ui, closeModalPost, clearPostData } = this.props;
 		return <div>
 			{data.posts.loading && 'Cargando...'}
 			{data.posts.items.map(x => <Card className={classes.card} key={x.id}>
@@ -62,7 +58,7 @@ class PostsComponent extends React.Component {
 					<Button size="small" color="primary" onClick={this.handleClickVerMas(x.id)}>Ver más</Button>
 				</CardActions>
 			</Card>)}
-			<FormPostComponent open={ui.postContainer.modalPostOpen} handleClose={this.handleCloseModal} post={data.post}></FormPostComponent>
+			<FormPostComponent open={ui.postContainer.modalPostOpen} onClose={closeModalPost} onExited={clearPostData} post={data.post}></FormPostComponent>
 		</div>;
 	}
 }

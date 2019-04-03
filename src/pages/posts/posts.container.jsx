@@ -4,40 +4,26 @@ import {
 } from 'react-redux';
 
 import {
-	getPostAction,
-	getPostsAction,
-	clearPostDataAction
-} from '../../redux/actions/posts-actions';
+	Creators as postActionsCreators,
+	AsyncActions
+} from '../../redux/actions/data/posts.actions';
 
 import {
-	Creators as uiActions
-} from '../../redux/actions/ui-actions';
+	Creators as postPageActions
+} from '../../redux/actions/ui/posts-page.actions';
 
 const mapStateToProps = (state) => ({
 	ui: state.postPage.ui,
 	data: state.postPage.data
 });
 
-const mapDispatchToProps = (dispatch) => {
-
-	const getPost = getPostAction(dispatch);
-
-	const fetchPosts = getPostsAction(dispatch);
-
-	const clearPostData = () => dispatch(clearPostDataAction());
-
-	const openModalPost = () => dispatch(uiActions.postPageOpenModal());
-
-	const closeModalPost = () => dispatch(uiActions.postPageCloseModal());
-
-	return {
-		getPost,
-		fetchPosts,
-		openModalPost,
-		closeModalPost,
-		clearPostData
-	};
-};
+const mapDispatchToProps = dispatch => ({
+	getPost: AsyncActions.getPost(dispatch),
+	fetchPosts: AsyncActions.fetchPosts(dispatch),
+	openModalPost: () => dispatch(postPageActions.openModalPost()),
+	closeModalPost: () => dispatch(postPageActions.closeModalPost()),
+	clearPostData: () => dispatch(postActionsCreators.clearPostData())
+});
 
 const PostsContainer = connect(
 	mapStateToProps,

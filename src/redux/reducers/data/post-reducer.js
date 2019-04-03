@@ -1,6 +1,4 @@
-import {
-	ACTIONS_TYPES
-} from "../../constants";
+import { Types as postTypes } from '../../actions/data/posts.actions';
 
 import {
 	createReducer
@@ -19,14 +17,14 @@ const getPostBegin = (state = INITIAL_STATE) => ({
 });
 
 const getPostSuccess = (state = INITIAL_STATE, action) => ({
-	value: action.payload.post,
+	value: action.post,
 	error: false,
 	loading: false,
 });
 
 const getPostFailure = (state = INITIAL_STATE, action) => ({
 	value: null,
-	error: action.payload.error,
+	error: action.error,
 	loading: false,
 });
 
@@ -36,10 +34,10 @@ const clearPostData = (state = INITIAL_STATE, action) => ({
 });
 
 const HANDLERS = {
-	[ACTIONS_TYPES.GET_POST_BEGIN]: getPostBegin,
-	[ACTIONS_TYPES.GET_POST_SUCCESS]: getPostSuccess,
-	[ACTIONS_TYPES.GET_POST_FAILURE]: getPostFailure,
-	[ACTIONS_TYPES.CLEAR_POST_DATA]: clearPostData
+	[postTypes.GET_POST_BEGIN]: getPostBegin,
+	[postTypes.GET_POST_SUCCESS]: getPostSuccess,
+	[postTypes.GET_POST_FAILURE]: getPostFailure,
+	[postTypes.CLEAR_POST_DATA]: clearPostData
 };
 
 export default createReducer(INITIAL_STATE, HANDLERS);

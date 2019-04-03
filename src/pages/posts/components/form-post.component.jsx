@@ -5,11 +5,11 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
 
-const FormPostComponent = ({ open, handleClose, post }) => (<Dialog
+const FormPostComponent = ({ open, onClose, post, onExited }) => (<Dialog
 	open={open}
-	onClose={handleClose}
+	onClose={onClose}
+	onExited={onExited}
 	aria-labelledby="form-dialog-title"
 >
 	{post.value && <DialogTitle id="form-dialog-title">{post.value.title}</DialogTitle>}
@@ -23,10 +23,10 @@ const FormPostComponent = ({ open, handleClose, post }) => (<Dialog
 		}
 	</DialogContent>
 	<DialogActions>
-		<Button onClick={handleClose} color="primary">
+		<Button onClick={onClose} color="primary">
 			Cancel
 	  </Button>
-		<Button onClick={handleClose} color="primary">
+		<Button onClick={onClose} color="primary">
 			Subscribe
 	  </Button>
 	</DialogActions>
