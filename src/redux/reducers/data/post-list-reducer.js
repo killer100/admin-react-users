@@ -2,7 +2,9 @@ import {
 	createReducer
 } from 'reduxsauce'
 
-import { Types as postTypes } from '../../actions/data/posts.actions';
+import {
+	Types as postTypes
+} from '../../actions/data/posts.actions';
 
 const INITIAL_STATE = {
 	loading: false,

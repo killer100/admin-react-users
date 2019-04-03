@@ -1,8 +1,6 @@
-/*import {
-	Types as layoutTypes
-} from '../../actions/ui/layout.actions';
-*/
-
+import {
+	Types as customersPageActionTypes
+} from '../../../actions/ui/admin/customers-page.actions';
 
 import {
 	createReducer
@@ -36,24 +34,19 @@ const INITIAL_STATE = {
 				field: 'address'
 			}
 		]
-	}
+	},
+	filter: ''
 };
 
-/*
-const openSidebar = (state = INITIAL_STATE, action) => ({
+
+const setFilter = (state = INITIAL_STATE, action) => ({
 	...state,
-	sidebarOpen: true
+	filter: action.value
 });
 
-const closeSidebar = (state = INITIAL_STATE, action) => ({
-	...state,
-	sidebarOpen: false
-});
-*/
 
 const HANDLERS = {
-	//[layoutTypes.OPEN_SIDEBAR]: openSidebar,
-	//[layoutTypes.CLOSE_SIDEBAR]: closeSidebar
+	[customersPageActionTypes.SET_FILTER]: setFilter
 }
 
 export default createReducer(INITIAL_STATE, HANDLERS);
